@@ -51,20 +51,13 @@ def humanized_mouse_movement(driver, element):
 driver = webdriver.Firefox(service=Service(), options=options, firefox_profile=profile)
 
 # INICIAR: Completar fecha inicio, fecha final, términos búsqueda y output_file
-fecha_inicio = "2022-02-24" #aaaa-mm-dd [guerra es 24/02/22]. rusos and argentina: me falto del 1 al 3 de enero del 2022
+fecha_inicio = "2022-02-24" #aaaa-mm-dd 
 fecha_final = "2023-12-31" #aaaa-mm-dd 
-terminos_busqueda = "migrantes guerra rusia AND Argentina"
+terminos_busqueda = "____" 
 link = f"https://x.com/search?q={terminos_busqueda}%20until%3A{fecha_final}%20since%3A{fecha_inicio}&src=typed_query"
 print(link)
 driver.get(link)
 output_file = f"código_fuente_{terminos_busqueda}_{fecha_final}_{fecha_inicio}.html" 
-
-#Scrapeados sin hilos (primer grupo): "embarazadas rusas", "inmigrantes AND rusia AND argentina", "migrantes AND rusia AND Argentina",  #"migrantes AND rusos AND argentina", "inmigracion rusa AND argentina", 
-
-#Scrapeados sin hilos (segundo grupo): "inmigración rusos AND argentina", #"inmigración rusas and argentina", "migraciones rusia AND argentina", "rusos en Argentina", "rusos AND Argentina"
-#inmigrantes AND rusos AND Argentina -embarazadas -rusia -rusa -migrantes -inmigración -migraciones
-#migración rusa AND Argentina -embarazadas -rusia -migrantes -inmigración -migraciones" "migrantes guerra rusia AND argentina"
-
 
 
 #Login
@@ -72,7 +65,7 @@ WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.XPATH, '/html
 username_element = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/div[4]/label/div/div[2]/div/input')
 humanized_mouse_movement(driver=driver,element=username_element)
 time.sleep(random.uniform(1,3.5))
-username_element.send_keys("_")  # Reemplaza "your_username" con tu nombre de usuario
+username_element.send_keys("_")  # poner nombre de usuario
 time.sleep(random.uniform(0.5,2.23))
 siguiente = driver.find_element(By.XPATH, '/html/body/div[1]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/div/div/div[2]/div[2]/div/div/div/button[2]/div/span/span')
 humanized_mouse_movement(driver=driver,element=siguiente)
@@ -135,7 +128,7 @@ while True:
                 # Verificar si se cargaron más tweets
                 new_height = driver.execute_script("return document.body.scrollHeight")
                 if new_height == last_height:
-                    if scroll_attempts == 7: #no va aplicarse nunca siendo 7 por la cantidad de intentos
+                    if scroll_attempts == 7: 
                         user_input = input('Insertar "y" para continuar scrolleo...')
                         if user_input == 'y':
                             print('Continuando')
@@ -178,7 +171,7 @@ tweet_links = ['https://x.com' + link['href']
 new_df = pd.DataFrame(tweet_links, columns=['url'])
 new_df = new_df.drop_duplicates()
 
-output_path = f"C:\\Users\\marti\\Documents\\Facu\\Beca Maestría\\Scraping\\Selenium\\WebScraping Twitter\\linkstweets_{terminos_busqueda}.csv"
+output_path = f"______{terminos_busqueda}.csv"
 
 # Try to read the existing CSV file
 try:
